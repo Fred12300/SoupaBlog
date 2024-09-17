@@ -1,0 +1,392 @@
+:root{
+    --txt-main: black;
+    --txt-light: white;
+    --txt-hover: #fd7447;
+    --bg-main: white;
+    --bg-light: #f9ebeb;
+    --bg-dark: #ea5c55;
+    --bg-m-dark: #eba165;
+    --bg-darker: #e17832;
+    --shadow: 1px 5px 8px 1px rgba(0, 0, 0, 0.407);
+    --round-bg: radial-gradient(closest-side, rgb(211, 211, 211) 0%, white 10%, rgba(211, 211, 211) 100%);
+    --bg-wTow: linear-gradient(to left, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.532), rgba(255, 255, 255, 0.3));
+}
+
+@media (prefers-color-scheme: dark){
+    :root{
+        color: rgb(0, 0, 0);
+    }
+}
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Edu AU VIC WA NT Hand" ;
+}
+
+body {
+    background: linear-gradient(var(--bg-main), var(--bg-light));
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+}
+
+.mainLogo {
+    background: linear-gradient(to right, transparent, var(--bg-main), transparent),url("./images/bg-nappe.jpg");
+    background-size: cover;
+    width: 30em;
+    box-shadow: var(--shadow);
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+a {
+    text-decoration: none;
+    color: var(--txt-main);
+}
+
+.link {
+    font-family: "Playwrite CU", cursive;
+}
+
+.link:hover {
+    color: var(--txt-hover);
+}
+
+input {
+    border-radius: 5px;
+    height: 2em;
+}
+
+.btn {
+    height: 2.5em;
+    padding: 0 2em;
+    border-radius: 20px;
+    font-family:"Playwrite CU" ;
+    margin: 1em;
+    border: 1px solid grey;
+    box-shadow: var(--shadow);
+}
+
+.btn:hover {
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.618), var(--bg-main)),url("./images/bg-nappe.jpg");
+    background-size: cover;
+    color: var(--txt-hover);
+    text-shadow: 1px 1px 1px rgb(0, 0, 0);
+}
+
+.contain {
+    width: 100%;
+    padding: 1.2em;
+    display: flex;
+    justify-content: center;
+}
+
+.cubBtn {
+    border: 1px solid rgb(193, 187, 187);
+    width: calc(100vw/3);
+    text-align: center;
+    background: var(--round-bg);
+}
+
+.transparent {
+    border-radius: 9px;
+    background: var(--bg-wTow);
+    backdrop-filter: blur(5px);
+}
+
+.hand {
+    font-family: "Playwrite CU", cursive;
+    color: var(--txt-main);
+}
+
+/* _____________________________ */
+/* HEADER */
+
+
+.retracted {
+    max-height: 0;
+    overflow: hidden;
+    transition: all 1s ease;
+}
+
+.bgCut {
+    background-image: url(./images/Bowl.jpg);
+    background-size: 200%;
+}
+
+.opened {
+    max-height: 1000px;
+}
+
+.slider {
+    height: 20px;
+    width: 100%;
+    background-color: var(--bg-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: var(--shadow);
+}
+
+.triangle {
+    height : 0;
+    width : 0;
+    border-top : 10px solid var(--txt-hover);
+    border-right : 15px solid transparent;
+    border-left : 15px solid transparent;
+    filter: drop-shadow(var(0 0 30px black));
+    transition: transform 0.5s;
+}
+
+.upside {
+    transform: rotate(180deg);
+}
+
+.mainLogo {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.bigLogo {
+    width: 7em;
+}
+
+.f-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.f-row {
+    display: flex;
+    gap: 1em;
+    width: 100%;
+}
+
+.center {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.admin {
+    width: 100%;
+    background-color: #fd7447;
+    color: white;
+    text-align: center;
+    align-items: center;
+}
+
+/* _____________________________ */
+/* FOOTER */
+
+.footer {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    margin: 0;
+    font-size: xx-small;
+    background-image: url("./images/bg-nappe.jpg");
+    background-size: cover;
+    text-align: end;
+    padding-right: 2em;
+}
+
+/* _____________________________ */
+/* NEW ARTICLE */
+
+.newArticle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    gap: 1em;
+    padding: 1em .5em;
+}
+
+.width {
+    width: 100%;
+}
+
+/* _____________________________ */
+/* MINI ARTICLE */
+
+.sommaire {
+    gap: 1em;
+    background-color: var(--bg-dark);
+}
+
+.article {
+    box-shadow: var(--shadow);
+    margin: 1em 0em;
+}
+
+.mini-article {
+    width: 100%;
+    max-width: 40em;
+    box-shadow: var(--shadow);
+}
+
+.bg-image {
+    height: 8em;
+    width: 100%;
+    object-fit: cover;
+}
+
+.mini-head {
+    padding-top: .6em;
+    background: linear-gradient(to right,transparent 0%,var(--bg-main) 30%, var(--bg-main) 70%, transparent 100%),url("./images/bg-nappe.jpg");
+    background-size: cover;
+}
+
+.mini-title {
+    background: var(--bg-wTow);
+    border-radius: 50px;
+    text-align: center;
+    color: var(--txt-dark);
+    font-family: "Playwrite CU", cursive;
+    font-weight: 700;
+    box-shadow: var(--shadow);
+
+}
+
+.head-bottom {
+    margin-top: .6em;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1em;
+    font-size: 0.7em;
+    color: var(--txt-hover);
+    background-color: #f9ebeb;
+}
+
+.mini-date {
+    font-size: 0.7em;
+}
+
+.mini-contenu {
+    padding: .5em;
+    border-bottom: 3px solid var(--bg-light);
+    border-radius: 0 0 10px 10px;
+    background: linear-gradient(var(--bg-m-dark), var(--bg-light));
+}
+
+.mini-contenu p {
+    background: var(--bg-wTow);
+}
+
+.etc {
+    font-family: "Playwrite CU";
+}
+
+/* _____________________________ */
+/* ARTICLE DETAILS*/
+
+.title {
+    font-size: x-large;
+    text-align: center;
+}
+
+.article_page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(var(--bg-m-dark), var(--bg-light));
+    gap: 2em;
+}
+
+.article {
+    margin-top: 1em;
+    box-shadow: var(--shadow);
+}
+
+.article-image {
+    width: 100%;
+    max-height: 60vh;
+}
+
+.comment {
+    font-size: small;
+    background: linear-gradient(var(--bg-darker), var(--bg-m-dark));
+    padding: 1em 0.5em
+}
+
+.like {
+    width: 2em;
+}
+
+.contenu {
+    padding: 0 0.5em;
+}
+
+.toLeft {
+    display: flex;
+    justify-content: end;
+}
+
+.commentaires {
+    gap: 1em;
+    overflow-y: scroll;
+    margin-bottom: 2em;
+    color: var(--txt-light);
+}
+
+.comment {
+    box-shadow: var(--shadow);
+}
+
+.comment_form {
+    width: 100vw;
+}
+
+.comment_input {
+    width: 100%;
+    border: none;
+}
+
+/* _____________________________ */
+/* LOGIN */
+
+.connection {
+    gap: 2em;
+    align-items: center;
+}
+
+.connection input {
+    height: 2em;
+    width: 80%;
+}
+
+.connection img {
+    width: 70%;
+}
+
+/* _____________________________ */
+/* NEW ACCOUNT */
+
+.account_form {
+    gap: 2em;
+    align-items: center;
+}
+
+.account_form input {
+    width: 80%;
+    height: 3em;
+}
+
+.account_form img {
+    width: 70%;
+}
