@@ -10,12 +10,25 @@ if(isset($_SESSION['user']) && !empty($_SESSION['user'])){
         createComment($auteur, $date, $article_id, $comment_contenu);
     }
 }
+$categories = getArtCategories($article['Art_id']); 
 ?>
 <section class="article_page">
     <div class="article">
         <div class="head center">
             <div class="title hand transparent">
                 <?php echo $article['Art_titre'] ?>
+            </div>
+            <div class="categories f-row center">
+                <?php foreach($categories as $categorie){?>
+                    <a class="categorie f-col png" href="./filtreCategorie.php?categorie=<?php echo $categorie['Categorie_id'] ?>">
+                        <div>
+                            <?php echo $categorie['Categorie_nom'] ?>
+                        </div>
+                        <img src="<?php echo $categorie['Categorie_icone']?>" alt="">
+                    </a>
+                <?php
+                }
+                ?>
             </div>
             <div class="head-bottom f-row">
                 <div class="auteur">Par <?php echo $article['Pseudo'] ?></div>

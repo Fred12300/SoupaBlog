@@ -1,7 +1,7 @@
 <?php 
     function dbConnect() {
         try {
-            $dbh = new PDO('mysql:host=localhost;dbname=Soupabase', 'root', 'root');
+            $dbh = new PDO('mysql:host=localhost;dbname=Soupabase', 'root', '');
             return $dbh;
         }catch(PDOException $e){
             echo 'ça marche pas' . $e;
@@ -23,6 +23,7 @@
         $dbh = dbConnect();
         $query = "SELECT * FROM Articles
         JOIN USERS ON Art_auteur = ID
+        ORDER BY Art_Date
         ";
         $stmt = $dbh->prepare($query);
         $stmt->execute();
@@ -99,4 +100,75 @@
         $stmt->execute();
     }
 
+    function getArtCategories($article_id){
+        $dbh = dbConnect();
+        $query = "SELECT * FROM CATEGORIES
+        JOIN CATEGORIES_LINK ON Categorie_id = FK_categorie_id
+        JOIN ARTICLES ON FK_art_id = Art_id
+        WHERE ART_id = :article_id;
+        ";
+        $stmt = $dbh->prepare($query);
+        $stmt->bindParam(':article_id', $article_id);
+        $stmt->execute();
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $results;
+    }
+
+    function getAllCategories(){
+        $dbh = dbConnect();
+        $query = "SELECT * FROM CATEGORIES;";
+        $stmt = $dbh->prepare($query);
+        $stmt->execute();
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $results;
+    }
+
+    function getArticlesFromCategorie($cat_id){
+        $dbh = dbConnect();
+        $query = "SELECT * FROM ARTICLES
+        JOIN CATEGORIES_LINK ON Art_id = FK_art_id
+        WHERE FK_categorie_id = :cat_id
+        ;";
+        $stmt = $dbh->prepare($query);
+        $stmt->bindParam(':cat_id', $cat_id);
+        $stmt->execute();
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $results;
+    }
+
+    function getCategorie($cat_id){
+        $dbh = dbConnect();
+        $query = "SELECT * FROM CATEGORIES
+        WHERE Categorie_id = :cat_id
+        ;";
+        $stmt = $dbh->prepare($query);
+        $stmt->bindparam(':cat_id', $cat_id);
+        $stmt->execute();
+        $results = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $results;
+    }
+
+    function getArticlesFromAuteur($user_id){
+        $dbh = dbConnect();
+        $query = "SELECT * FROM ARTICLES
+        JOIN Users ON Art_auteur = ID
+        WHERE ID = :user_id
+        ;";
+        $stmt = $dbh->prepare($query);
+        $stmt->bindParam(':user_id', $user_id);
+        $stmt->execute();
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $results;
+    }
+
+    function getAllAuteurs(){
+        $dbh = dbConnect();
+        $query = "SELECT DISTINCT Pseudo, ID FROM USERS
+        JOIN ARTICLES ON Art_auteur = ID
+        ;";
+        $stmt = $dbh->prepare($query);
+        $stmt->execute();
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $results;
+    }
 ?>

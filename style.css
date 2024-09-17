@@ -25,7 +25,7 @@
 }
 
 body {
-    background: linear-gradient(var(--bg-main), var(--bg-light));
+    background: linear-gradient(var(--bg-dark), var(--bg-darker));
 }
 
 header {
@@ -71,6 +71,7 @@ input {
     margin: 1em;
     border: 1px solid grey;
     box-shadow: var(--shadow);
+    justify-content: center;
 }
 
 .btn:hover {
@@ -221,6 +222,22 @@ input {
     width: 100%;
 }
 
+.categories-check img {
+    width: 1.7em;
+}
+
+.categories-check {
+    font-size: small;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.largerCheckbox {
+    height: 2em;
+    width: 2em;
+}
+
+
 /* _____________________________ */
 /* MINI ARTICLE */
 
@@ -237,7 +254,15 @@ input {
 .mini-article {
     width: 100%;
     max-width: 40em;
-    box-shadow: var(--shadow);
+    filter: drop-shadow(--shadow);
+}
+
+.categories img{
+    width: 2em;
+}
+
+.categorie {
+    align-items: center;
 }
 
 .bg-image {
@@ -253,6 +278,7 @@ input {
 }
 
 .mini-title {
+    margin: 0 1em;
     background: var(--bg-wTow);
     border-radius: 50px;
     text-align: center;
@@ -278,14 +304,19 @@ input {
 }
 
 .mini-contenu {
-    padding: .5em;
-    border-bottom: 3px solid var(--bg-light);
-    border-radius: 0 0 10px 10px;
-    background: linear-gradient(var(--bg-m-dark), var(--bg-light));
+    padding: .5em 1em;
+    /* background: linear-gradient(var(--bg-m-dark), var(--bg-light)); */
+}
+
+.txt-center {
+    display: flex;
+    justify-content: center;
+    text-align: center;
 }
 
 .mini-contenu p {
     background: var(--bg-wTow);
+    padding: .5em;
 }
 
 .etc {
@@ -390,3 +421,32 @@ input {
 .account_form img {
     width: 70%;
 }
+
+/* _____________________________ */
+/* FILTRE CATEGORIES*/
+
+.padd {
+    padding: 2em 1em ;
+}
+
+.catFilter {
+    background: linear-gradient(var(--bg-dark), var(--bg-darker));
+}
+
+.categories-list {
+    align-items: center;
+    margin: 2em 0;
+    gap: 1.5em;
+}
+
+hr {
+    width: 20em;
+}
+
+.png:hover {
+    filter: invert(100%);
+}
+
+/* _____________________________ */
+/* FILTRE AUTEURS*/
+
