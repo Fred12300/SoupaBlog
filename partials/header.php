@@ -47,7 +47,7 @@ if(isset($_SESSION['user']) || !empty($_SESSION['user'])){
                     echo $connected != 0 ? '
                     <div class="f-col">
                         <a href="newArticle.php" class="btn transparent">+ Créer Article</a>
-                        <a href="" class="btn transparent" >Mes Articles</a>
+                        <a href="editArticle.php?" class="btn transparent" >Mes Articles</a>
                         <a href="" class="btn transparent">Mes Commentaires</a>
                     </div>
                     <div class="f-col">

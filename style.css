@@ -226,10 +226,16 @@ input {
     width: 1.7em;
 }
 
+.cube {
+    width: 7.5em;
+    height: 7.5em;
+}
+
 .categories-check {
     font-size: small;
     flex-wrap: wrap;
     justify-content: space-between;
+    padding: 0 2em;
 }
 
 .largerCheckbox {
@@ -262,7 +268,9 @@ input {
 }
 
 .categorie {
+    justify-content: center;
     align-items: center;
+    text-align: center;
 }
 
 .bg-image {
@@ -341,6 +349,7 @@ input {
 
 .article {
     margin-top: 1em;
+    margin: 0.5em 1em;
     box-shadow: var(--shadow);
 }
 
@@ -440,6 +449,7 @@ input {
 }
 
 hr {
+    margin-top: 0.5em;
     width: 20em;
 }
 
@@ -450,3 +460,17 @@ hr {
 /* _____________________________ */
 /* FILTRE AUTEURS*/
 
+.auteurs {
+    gap: 2em;
+    background: linear-gradient(var(--bg-dark), var(--bg-darker));
+}
+
+.auteur {
+    box-shadow: var(--shadow);
+}
+
+.articles-list {
+    padding: 1em;
+    gap: .8em;
+    background: linear-gradient(var(--bg-dark), var(--bg-darker));
+}

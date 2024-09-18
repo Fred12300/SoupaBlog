@@ -31,7 +31,7 @@ $categories = getArtCategories($article['Art_id']);
                 ?>
             </div>
             <div class="head-bottom f-row">
-                <div class="auteur">Par <?php echo $article['Pseudo'] ?></div>
+                <a href="filtreAuteur.php?auteur=<?php echo $article['Art_auteur']?>" class="auteur hand">Par <?php echo $article['Pseudo'] ?></a>
                 <div class="date"><?php echo $article['Art_Date'] ?></div>
             </div>
         </div>

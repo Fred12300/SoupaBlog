@@ -171,4 +171,103 @@
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $results;
     }
+
+    function getAuteur($art_auteur){
+        $dbh = dbConnect();
+        $query = "SELECT Pseudo, ID FROM USERS
+        WHERE ID = :art_auteur
+        ;";
+        $stmt = $dbh->prepare($query);
+        $stmt->bindParam(':art_auteur', $art_auteur);
+        $stmt->execute();
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $results;
+    }
+
+    function isOwner($user_id, $art_id){
+        $dbh = dbConnect();
+        $query = "SELECT Art_auteur FROM ARTICLES
+        WHERE Art_id = :art_id
+        ;";
+        $stmt = $dbh->prepare($query);
+        $stmt->bindParam(':art_id', $art_id);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $toreturn = ($result['Art_auteur'] ==
+         $user_id);
+        return $toreturn;
+    }
+
+    function getcCatNameFromArticle($art_id){
+        $dbh = dbConnect();
+        $query = "SELECT Categorie_nom FROM CATEGORIES
+        JOIN CATEGORIES_LINK ON Categorie_id = FK_categorie_id
+        WHERE FK_art_id = :art_id
+        ;";
+        $stmt = $dbh->prepare($query);
+        $stmt->bindParam(':art_id', $art_id);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    function createArticle($auteur, $titre, $categories, $contenu){
+        $date = date('Y-m-d');
+        $dbh = dbConnect();
+        $query= "INSERT INTO ARTICLES (Art_auteur, Art_titre, Art_contenu, Art_Date)
+        VALUES(:auteur, :titre, :contenu, :date)";
+        $stmt = $dbh->prepare($query);
+        $stmt->bindParam(':auteur', $auteur);
+        $stmt->bindParam(':titre', $titre);
+        $stmt->bindParam(':contenu', $contenu);
+        $stmt->bindParam(':date', $date);
+        $stmt->execute();
+        
+        $articleId = $dbh->lastInsertId();
+
+        foreach($categories as $categorie){
+            $query = "INSERT INTO CATEGORIES_LINK (FK_art_id, FK_categorie_id)
+            VALUES (:FK_art_id, :FK_categorie_id)
+            ";
+            $stmt->bindParam(':FK_art_id', $articleId);
+            $stmt->bindParam(':FK_categorie_id', $categorie);
+            $stmt = $dbh->prepare($query);
+        }
+    }
+
+    function updateArticle($art_id, $titre, $categories, $contenu){
+        $date = date('Y-m-d');
+        $dbh = dbConnect();
+        $query= "UPDATE ARTICLES
+        SET 
+        Art_titre = :titre,
+        Art_contenu = :contenu
+        WHERE Art_id = :art_id";
+        $stmt = $dbh->prepare($query);
+        $stmt->bindParam(':titre', $titre);
+        $stmt->bindParam(':contenu', $contenu);
+        $stmt->bindParam(':art_id', $art_id);
+        $stmt->execute();
+        
+        foreach($categories as $categorie){
+            
+            $query = "INSERT INTO CATEGORIES_LINK (FK_art_id, FK_categorie_id)
+            VALUES (:FK_art_id, :FK_categorie_id)
+            ";
+            $stmt->bindParam(':FK_art_id', $articleId);
+            $stmt->bindParam(':FK_categorie_id', $categorie);
+            $stmt = $dbh->prepare($query);
+        }
+    
+
+        foreach($categories as $categorie){
+            $query = "INSERT INTO CATEGORIES_LINK (FK_art_id, FK_categorie_id)
+            VALUES (:FK_art_id, :FK_categorie_id)
+            ";
+            $stmt->bindParam(':FK_art_id', $articleId);
+            $stmt->bindParam(':FK_categorie_id', $categorie);
+            $stmt = $dbh->prepare($query);
+        }
+    }
+
 ?>
