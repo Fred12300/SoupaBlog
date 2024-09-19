@@ -7,7 +7,7 @@ if(isset($_GET['auteur']) && !empty($_GET['auteur'])){
 }
 
 ?>
-<section class="auteurs f-col">
+<section class="f-col auteurs">
     <?php foreach($auteurs as $auteur){?>
     <section class="auteur">
     <div class="hand transparent article">

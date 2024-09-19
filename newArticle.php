@@ -19,7 +19,7 @@ if(isset($_POST) && !empty($_POST) && isset($_GET['edit'])){
 
 if(isset($_GET['edit']) && !empty($_GET['edit'])){
 
-    if(!isOwner($_SESSION['user']['id'], $_GET['edit'])){
+    if((!isOwner($_SESSION['user']['id'], $_GET['edit']))&& $isAdmin != 1){
         header('location: ./503.php');
     };
     $article = getArticle($_GET['edit']);

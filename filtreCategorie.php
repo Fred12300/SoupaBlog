@@ -7,28 +7,31 @@ if(isset($_GET['categorie']) && !empty($_GET['categorie'])){
     ?>
     <div class="f-col categories-list">
         <div class="transparent hand padd"><?php echo $catName?></div>
-
-        <?php
-        foreach($selectedArticles as $article){
-            $categories = getArtCategories($article['Art_id']); 
-        ?>
-        <a href="./articleDetails.php?article=<?php echo $article['Art_id'] ?>" class="png">
-            <div class="hand"><?php echo $article['Art_titre']?></div>
-            <div class="categories f-row center">
-                <?php foreach($categories as $categorie){?>
-                    <div class="categorie f-col">
-                        <div>
-                            <?php echo $categorie['Categorie_nom'] ?>
-                        </div>
-                        <img src="<?php echo $categorie['Categorie_icone']?>" alt="">
+        <div class="display">
+            <?php
+            foreach($selectedArticles as $article){
+                $categories = getArtCategories($article['Art_id']); 
+            ?>
+            <div class="oneCat">
+                <a href="./articleDetails.php?article=<?php echo $article['Art_id'] ?>" class="png transparent text-center">
+                    <div class="hand"><?php echo $article['Art_titre']?></div>
+                    <div class="categories f-row center">
+                        <?php foreach($categories as $categorie){?>
+                            <div class="categorie f-col">
+                                <div>
+                                    <?php echo $categorie['Categorie_nom'] ?>
+                                </div>
+                                <img src="<?php echo $categorie['Categorie_icone']?>" alt="">
+                            </div>
+                        <?php
+                        }
+                        ?>
                     </div>
-                <?php
-                }
-                ?>
+                </a>
+
             </div>
-        </a>
-        <hr>
-        <?php } ?>
+            <?php } ?>
+        </div>
     </div>
 <?php
 }

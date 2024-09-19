@@ -48,7 +48,7 @@ if(isset($_SESSION['user']) || !empty($_SESSION['user'])){
                     <div class="f-col">
                         <a href="newArticle.php" class="btn transparent">+ Créer Article</a>
                         <a href="editArticle.php?" class="btn transparent" >Mes Articles</a>
-                        <a href="" class="btn transparent">Mes Commentaires</a>
+                        <a href="editComment.php" class="btn transparent">Mes Commentaires</a>
                     </div>
                     <div class="f-col">
                         <a href="" class="btn transparent">Mon Compte</a>
@@ -60,8 +60,8 @@ if(isset($_SESSION['user']) || !empty($_SESSION['user'])){
                 <?php echo $isAdmin == 1 ?
                 '<div class="f-col contain admin">
                     <p>--ADMIN--</p>
-                    <a href="" class="btn admin">Gérer Articles</a>
-                    <a href="" class="btn admin">Gérer Commentaires</a>
+                    <a href="admin.php?action=articles" class="btn admin">Gérer Articles</a>
+                    <a href="admin.php?action=comments" class="btn admin">Gérer Commentaires</a>
                     <a href="" class="btn admin">Gérer Users</a>
                 </div>'
                 : "" ; ?>

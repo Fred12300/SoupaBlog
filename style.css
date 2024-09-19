@@ -474,3 +474,75 @@ hr {
     gap: .8em;
     background: linear-gradient(var(--bg-dark), var(--bg-darker));
 }
+
+
+@media only screen and (min-width: 800px) {
+    .retracted {
+        flex-direction: row;
+    }
+
+    .sommaire {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .somm {
+        max-width: 45%;
+    }
+
+    .categories {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .categorie {
+        max-width: 40%;
+    }
+
+    .oneCat {
+        display: flex;
+        width: 30%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        height: fit-content;
+    }
+
+    .auteurs {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    input {
+        max-width: 50%;
+    }
+
+    .display{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1em;
+    }
+}
+
+@media only screen and (min-width: 1500px) {
+    .header {
+        flex-direction: row;
+    }
+
+    .mainLogo {
+        max-width: 15%;
+    }
+
+    .nav1 {
+        flex-direction: column;
+    }
+
+    .cubBtn {
+        max-width: 2
+        5%;
+    }
+
+    .bgCut {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}

@@ -5,7 +5,7 @@ $articles = getAllArticles();
     <?php foreach($articles as $article){
     $categories = getArtCategories($article['Art_id']);    
     ?>
-    <div class="article">
+    <div class="article somm">
         <a class="mini-article" href="./articleDetails.php?article=<?php echo $article['Art_id'] ?>">
             <div class="mini-head center">
                 <div class="mini-title">

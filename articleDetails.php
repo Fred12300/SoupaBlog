@@ -8,6 +8,8 @@ if(isset($_SESSION['user']) && !empty($_SESSION['user'])){
         $article_id = $article['Art_id'];
         $comment_contenu = $_POST['newComment'];
         createComment($auteur, $date, $article_id, $comment_contenu);
+        $url = 'location = ./articleDetails.php?article='. $article['Art_id'];
+        header($url);
     }
 }
 $categories = getArtCategories($article['Art_id']); 

@@ -229,9 +229,10 @@
             $query = "INSERT INTO CATEGORIES_LINK (FK_art_id, FK_categorie_id)
             VALUES (:FK_art_id, :FK_categorie_id)
             ";
+            $stmt = $dbh->prepare($query);
             $stmt->bindParam(':FK_art_id', $articleId);
             $stmt->bindParam(':FK_categorie_id', $categorie);
-            $stmt = $dbh->prepare($query);
+            $stmt->execute();
         }
     }
 
@@ -249,25 +250,70 @@
         $stmt->bindParam(':art_id', $art_id);
         $stmt->execute();
         
-        foreach($categories as $categorie){
-            
-            $query = "INSERT INTO CATEGORIES_LINK (FK_art_id, FK_categorie_id)
-            VALUES (:FK_art_id, :FK_categorie_id)
-            ";
-            $stmt->bindParam(':FK_art_id', $articleId);
-            $stmt->bindParam(':FK_categorie_id', $categorie);
+        foreach($categories as $categorie){   
+            $query = "DELETE FROM CATEGORIES_LINK
+            WHERE FK_art_id = :art_id";
             $stmt = $dbh->prepare($query);
+            $stmt->bindParam(':art_id', $art_id);
+            $stmt->execute();
         }
     
-
         foreach($categories as $categorie){
             $query = "INSERT INTO CATEGORIES_LINK (FK_art_id, FK_categorie_id)
-            VALUES (:FK_art_id, :FK_categorie_id)
-            ";
-            $stmt->bindParam(':FK_art_id', $articleId);
-            $stmt->bindParam(':FK_categorie_id', $categorie);
+            VALUES (:FK_art_id, :FK_categorie_id)";
             $stmt = $dbh->prepare($query);
+            $stmt->bindParam(':FK_art_id', $art_id);
+            $stmt->bindParam(':FK_categorie_id', $categorie);
+            $stmt->execute();
         }
     }
 
+
+    function deleteArticle($art_id){
+        $dbh = dbConnect();
+        $categories = getArtCategories($art_id);
+        foreach($categories as $categorie){   
+            $query = "DELETE FROM CATEGORIES_LINK
+            WHERE FK_art_id = :art_id";
+            $stmt = $dbh->prepare($query);
+            $stmt->bindParam(':art_id', $art_id);
+            $stmt->execute();
+        }
+
+        $query= "DELETE FROM ARTICLES
+        WHERE Art_id = :art_id";
+        $stmt = $dbh->prepare($query);
+        $stmt->bindParam(':art_id', $art_id);
+        $stmt->execute();
+    }
+
+    function getAllComments() {
+        $dbh = dbConnect();
+        $query = "SELECT * FROM COMMENTAIRES";
+        $stmt = $dbh->prepare($query);
+        $stmt->execute();
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $results;
+    }
+
+    function getCommentsFromAuteur($user_id){
+        $dbh = dbConnect();
+        $query = "SELECT * FROM COMMENTAIRES
+        WHERE Comment_auteur = :user_id
+        ;";
+        $stmt = $dbh->prepare($query);
+        $stmt->bindParam(':user_id', $user_id);
+        $stmt->execute();
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $results;
+    }
+
+    function deleteComment($com_id){
+        $dbh = dbConnect();
+        $query= "DELETE FROM COMMENTAIRES
+        WHERE Comment_id = :com_id";
+        $stmt = $dbh->prepare($query);
+        $stmt->bindParam(':com_id', $com_id);
+        $stmt->execute();
+    }
 ?>
